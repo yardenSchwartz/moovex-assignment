@@ -1,9 +1,20 @@
 import fetchIntercept from 'fetch-intercept';
+// import Condition from 'yup/lib/Condition';
+import axios from 'axios';
 
 export const unregister = fetchIntercept.register({
   request: function (url, config) {
     // Modify the url or config here
-    config.headers.platform = 'web';
+
+    if (
+      JSON.parse(localStorage.getItem('REACT_TOKEN_AUTH')) !== null &&
+      config !== undefined
+    ) {
+      config.headers.token = JSON.parse(
+        localStorage.getItem('REACT_TOKEN_AUTH')
+      );
+    }
+
     return [url, config];
   },
 
@@ -28,3 +39,23 @@ export const unregister = fetchIntercept.register({
 
 // Unregister your interceptor
 // unregister();
+
+// export const setAuthorization = (token) => {
+//   api.interceptors.request.use((config) => {
+//     config.headers.Authorization = token;
+//     return config;
+//   });
+// };
+
+// const api = axios.create({
+//   baseURL: '/api',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
+
+// const api= axios.create({
+//   baseURL: 'http://exemple.com'
+// });
+
+// export default setAuthorization;
