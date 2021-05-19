@@ -6,8 +6,8 @@ import { interceptor } from '../interceptor';
 import Card from '../components/Card';
 // import PostForm from './PostForm';
 // import { getPosts } from '../components/postsAction';
-import axios from 'axios';
-
+// import axios from 'axios';
+import axios from '../interceptor';
 export default class Posts extends React.Component {
   // extends Component
   constructor() {
